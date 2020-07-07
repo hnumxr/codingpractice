@@ -51,4 +51,36 @@ public class LeetCodeMergeTwoSortedLists {
         }
         return dummy1.next;
     }
+
+    public ListNode mergeTwoListsLearn1(ListNode l1, ListNode l2){
+        ListNode dummy = new ListNode();
+        ListNode tail = dummy;
+
+        if(l1 == null) {
+            return l2;
+        }
+        if(l2 == null){
+            return l1;
+        }
+        while (true){
+            if(l1 == null) {
+                tail.next = l2;
+                break;
+            }
+            if(l2 == null){
+                tail.next = l1;
+                break;
+            }
+            if(l1.val <= l2.val){
+                tail.next = l1;
+                l1 = l1.next;
+            }
+            else if (l1.val > l2.val){
+                tail.next = l2;
+                l2 = l2.next;
+            }
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
 }
