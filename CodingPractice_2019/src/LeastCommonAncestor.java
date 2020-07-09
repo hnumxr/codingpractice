@@ -1,3 +1,5 @@
+import LeetCodeTrees.TreeNode;
+
 public class LeastCommonAncestor {
 
     /*
