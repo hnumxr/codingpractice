@@ -18,7 +18,7 @@ package LeetCodeStrings;
 
 public class LeetCodeValidPalindrome {
     public boolean isPalindrome(String s) {
-        if(s.isEmpty() || s.isBlank() || s == null || s.length() == 0 || s.length() == 1)
+        if(s.isEmpty() || s.isEmpty() || s == null || s.length() == 0 || s.length() == 1)
             return true;
         for(int i=0, j = s.length()-1; i<=j; ){
             char c1 = s.charAt(i);
