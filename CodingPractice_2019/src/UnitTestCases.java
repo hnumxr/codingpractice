@@ -1,6 +1,18 @@
 public class UnitTestCases
 {
     /*
+            BalancedBrackets b = new BalancedBrackets();
+        System.out.println(b.isBalanced("{[()]}"));
+
+     */
+    /*
+            ArraysLeftRotation a = new ArraysLeftRotation();
+        int[] al = new int[]{1,2,3,4,5};
+        int r = 4;
+        System.out.println(Arrays.toString(a.rotLeft(al, r)));
+     */
+
+    /*
             DesignerPDFViewer d = new DesignerPDFViewer();
         int[] h = new int[]{1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
         String w = "abc";

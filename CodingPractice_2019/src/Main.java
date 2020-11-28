@@ -1,5 +1,6 @@
 import HackerRank.AVeryBigSum;
 import HackerRank.ArraysLeftRotation;
+import HackerRank.BalancedBrackets;
 import HackerRank.DesignerPDFViewer;
 import LeetCodeTrees.LeetCodeValidateBinarySearchTree;
 import LeetCodeTrie.WordDictionary;
@@ -16,10 +17,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-        ArraysLeftRotation a = new ArraysLeftRotation();
-        int[] al = new int[]{1,2,3,4,5};
-        int r = 4;
-        System.out.println(Arrays.toString(a.rotLeft(al, r)));
+        WordDictionary w = new WordDictionary();
+        w.addWord("add");
+        w.addWord("adds");
+        w.addWord("adder");
+        w.addWord("addee");
+        System.out.println(w.search("add."));
     }
 }
 

@@ -36,7 +36,7 @@ public class WordDictionary{
         for(int i = 0; i < word.length(); i++){
             char currentChar = word.charAt(i);
             if(!node.containsKey(currentChar)) {
-                node.put(currentChar, new TrieNode1());
+                node.put(currentChar, new TrieNode1(), node.route);
             }
             node = node.get(currentChar);
         }
@@ -46,7 +46,7 @@ public class WordDictionary{
     /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     public boolean search(String word) {
         TrieNode1 node = searchPrefix(word, root);
-        return node != null && node.isEnd();
+        return node != null && node.isEnd() && word.length()== node.route.length();
     }
 
     private TrieNode1 searchPrefix(String word, TrieNode1 startNode){
@@ -54,16 +54,32 @@ public class WordDictionary{
         outerloop:
         for(int i = 0; i < word.length(); i++){
             char curLetter = word.charAt(i);
+            TrieNode1 standPoint = node;
             if(curLetter == '.') {
                 for (char c = 'a'; c <= 'z'; c++) {
                     if (node.containsKey(c)) {
                         node = node.get(c);
                         int e = word.length();
+                        if(i+1 == e){
+                            if(node != null && node.isEnd())
+                                break outerloop;
+                            else{
+                                node = standPoint;
+                                continue;
+                            }
+                        }
                         String subWord = word.substring(i+1, e);
                         node = searchPrefix(subWord, node);
-                        break outerloop;
+                        if(node != null && node.isEnd())
+                            break outerloop;
+                        else{
+                            node = standPoint;
+                            continue;
+                        }
                     }
                     else{
+                        if(c == 'z'){
+                            return null;}
                         continue;
                     }
                 }
@@ -83,14 +99,16 @@ class TrieNode1{
 
     private TrieNode1[] links;
 
+    protected String route;
+
     private final int R = 26;
 
     private boolean isEnd;
 
-    public TrieNode1(){
+    public TrieNode1()
+    {
         links = new TrieNode1[R];
     }
-
     public boolean containsKey(char ch){
         return links[ch - 'a'] != null;
     }
@@ -99,8 +117,9 @@ class TrieNode1{
         return links[ch - 'a'];
     }
 
-    public void put(char ch, TrieNode1 node){
+    public void put(char ch, TrieNode1 node, String ancRoute){
         links[ch - 'a'] = node;
+        node.route = (ancRoute==null?"":ancRoute) + ch;
     }
 
     public void setEnd(){
